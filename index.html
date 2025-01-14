@@ -3,100 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Ahsan Siddiq</title>
+    <title>Portfolio - Home</title>
     <style>
-        /* General styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
-            color: #fff;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
             text-align: center;
+            padding: 50px;
         }
-        
-        /* Header */
-        header {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #4CAF50;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        
-        /* About Me Section */
-        .about {
-            margin: 50px auto;
-            max-width: 600px;
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-        
-        /* Footer (Clock) */
-        footer {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
+
+        p {
             font-size: 1.2em;
         }
-        
-        /* Clock Text */
-        #clock {
-            font-family: 'Courier New', Courier, monospace;
+
+        .rotations {
+            margin-top: 30px;
             font-size: 1.5em;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="quotes.html">Quotes</a>
+    </nav>
+
+    <div class="container">
         <h1>Ahsan Siddiq</h1>
-    </header>
-    
-    <main>
-        <div class="about">
-            <p>
-                Hello! I'm Ahsan Siddiq, an aspiring cybersecurity professional, writer, poet, and tech enthusiast. 
-                Welcome to my portfolio! Here, you can explore my projects, writings, and skills.
-            </p>
+        <p>Welcome to my portfolio! I am a passionate cybersecurity student and an aspiring songwriter, rapper, and poet.</p>
+        <div class="rotations">
+            Earth's rotations since 7 Sept 1999, 12:30 PM: <span id="rotationCount"></span>
         </div>
-    </main>
-    
-    <footer>
-        <div id="clock"></div>
-    </footer>
-    
+    </div>
+
     <script>
-        // Function to update the clock
-        function updateClock() {
+        function updateRotations() {
+            const birthDate = new Date("1999-09-07T12:30:00");
             const now = new Date();
-            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const monthNames = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            
-            const day = dayNames[now.getDay()];
-            const date = now.getDate();
-            const month = monthNames[now.getMonth()];
-            const year = now.getFullYear();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            
-            const timestamp = `${hours}:${minutes}:${seconds}`;
-            const fullDate = `${day}, ${date} ${month} ${year} ${timestamp}`;
-            
-            document.getElementById('clock').textContent = fullDate;
+            const elapsedTime = now - birthDate;
+            const rotations = (elapsedTime / (24 * 60 * 60 * 1000)).toFixed(6); // 1 rotation per day
+            document.getElementById('rotationCount').textContent = rotations;
         }
-        
-        // Update clock every second
-        setInterval(updateClock, 1000);
-        updateClock(); // Initialize immediately
+
+        // Update every second
+        setInterval(updateRotations, 1000);
+        updateRotations();
     </script>
 </body>
 </html>
-
