@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Home</title>
+    <title>Portfolio - Ahsan Siddiq</title>
     <style>
+        /* General styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -12,77 +13,90 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            color: #333;
-        }
-
-        header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #fff;
             text-align: center;
-            margin-top: 50px;
         }
-
+        
+        /* Header */
+        header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
         header h1 {
-            font-size: 2.5rem;
             margin: 0;
+            font-size: 2.5em;
         }
-
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            color: #555;
+        
+        /* About Me Section */
+        .about {
+            margin: 50px auto;
+            max-width: 600px;
+            font-size: 1.2em;
+            line-height: 1.6;
         }
-
+        
+        /* Footer (Clock) */
         footer {
-            margin-bottom: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #444;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            font-size: 1.2em;
         }
-
-        .age-counter {
+        
+        /* Clock Text */
+        #clock {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: #222;
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>Hi, I am Ahsan Siddiq</h1>
-    <p>Welcome to my portfolio website!</p>
-</header>
-
-<footer>
-    <div>Your Age: <span class="age-counter" id="age"></span></div>
-</footer>
-
-<script>
-    function calculateAge(birthDate) {
-        const now = new Date();
-        const diff = now - birthDate;
-
-        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-        const months = now.getMonth() - birthDate.getMonth() + (years * 12);
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        return `${years} Years : ${months % 12} Months : ${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Seconds`;
-    }
-
-    function updateAge() {
-        const birthDate = new Date('2000-01-01T00:00:00'); // Replace with your actual birth date
-        const ageElement = document.getElementById('age');
-        ageElement.textContent = calculateAge(birthDate);
-    }
-
-    setInterval(updateAge, 1000);
-    updateAge(); // Initialize on load
-</script>
-
+    <header>
+        <h1>Ahsan Siddiq</h1>
+    </header>
+    
+    <main>
+        <div class="about">
+            <p>
+                Hello! I'm Ahsan Siddiq, an aspiring cybersecurity professional, writer, poet, and tech enthusiast. 
+                Welcome to my portfolio! Here, you can explore my projects, writings, and skills.
+            </p>
+        </div>
+    </main>
+    
+    <footer>
+        <div id="clock"></div>
+    </footer>
+    
+    <script>
+        // Function to update the clock
+        function updateClock() {
+            const now = new Date();
+            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            
+            const day = dayNames[now.getDay()];
+            const date = now.getDate();
+            const month = monthNames[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const timestamp = `${hours}:${minutes}:${seconds}`;
+            const fullDate = `${day}, ${date} ${month} ${year} ${timestamp}`;
+            
+            document.getElementById('clock').textContent = fullDate;
+        }
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initialize immediately
+    </script>
 </body>
 </html>
+
